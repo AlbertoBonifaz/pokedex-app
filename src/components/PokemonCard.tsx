@@ -1,4 +1,6 @@
+// PokemonCard.tsx
 import { useGetPokemonDetailQuery } from '../store/pokemonApi';
+import { Link } from 'react-router-dom'
 
 interface PokemonCardProps {
   name: string;
@@ -52,6 +54,15 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name }) => {
           </span>
         ))}
       </div>
+
+      {/* BOTON INFO */}
+      <div className='text-center'>
+        <Link to={`/pokemon/${pokemon.name}`}
+        className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors inline-block' 
+        >Info</Link>
+
+      </div>
+
     </div>
   );
 };

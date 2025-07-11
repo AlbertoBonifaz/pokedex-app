@@ -1,7 +1,9 @@
+// PokemonList.tsx
 import React, { useState, useEffect } from 'react';
 import { useGetPokemonListQuery } from '../store/pokemonApi';
 import PokemonCard from './PokemonCard';
 import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
 
 // Define cuántos Pokémon quieres cargar por página
 const ITEMS_PER_PAGE = 20;
@@ -104,6 +106,20 @@ const PokemonList: React.FC = () => {
       <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
         Pokédex
       </h1>
+       {/* Boton para convertise en entrenador */}
+       <div className='text-center mb-8'>
+        <Link
+          to="/formulario"
+          className='bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 
+                     text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg 
+                     transform hover:scale-105 transition duration-300 ease-in-out
+                     inline-flex items-center gap-2'>
+                      <span>⚡</span>
+                      ¡Quieres ser el nuevo Ash!
+                      <span>⚡</span>
+                     </Link>
+
+       </div>
 
       {/* Componente de barra de búsqueda */}
       <SearchBar onSearch={handleSearch} />
