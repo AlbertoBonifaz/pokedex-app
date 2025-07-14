@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import PokemonList from '../components/PokemonList';
-import PokemonDetail from '../components/PokemonDetail';
-import NotFoundPage from '../components/NotFoundPage';
-import Abaut from '../components/Abaut';
-import TrainerForm from '../components/TrainerForm';
+import PokemonList from '../pages/PokemonList';
+import PokemonDetail from '../pages/PokemonDetail';
+import NotFoundPage from '../pages/NotFoundPage';
+import TrainerForm from '../pages/TrainerForm';
+import {PokeCrub} from '../pages/PokeCrub';
 
 
 export const router = createBrowserRouter([
@@ -18,16 +18,16 @@ export const router = createBrowserRouter([
         element: <PokemonList />,
       },
       {
-        path: 'about',
-        element: <Abaut />,
-      },
-      {
         path: 'pokemon/:name',
         element: <PokemonDetail/>,
       },
       {
         path: 'formulario',
         element: <TrainerForm/>,
+      },
+      {
+        path: 'pokecrub',
+        element: <PokeCrub/>
       }
     ],
   },

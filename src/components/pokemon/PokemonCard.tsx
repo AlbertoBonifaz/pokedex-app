@@ -1,10 +1,7 @@
 // PokemonCard.tsx
-import { useGetPokemonDetailQuery } from '../store/pokemonApi';
+import { useGetPokemonDetailQuery } from '../../store/pokemonApi';
 import { Link } from 'react-router-dom'
-
-interface PokemonCardProps {
-  name: string;
-}
+import type { PokemonCardProps } from '../../types/pokemon';
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ name }) => {
   const { data: pokemon, isLoading, error } = useGetPokemonDetailQuery(name);
@@ -56,10 +53,10 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ name }) => {
       </div>
 
       {/* BOTON INFO */}
-      <div className='text-center'>
+      <div className='text-center mt-2'>
         <Link to={`/pokemon/${pokemon.name}`}
         className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors inline-block' 
-        >Info</Link>
+        >Información</Link>
 
       </div>
 

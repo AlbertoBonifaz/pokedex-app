@@ -87,3 +87,12 @@ export interface PokemonDetail {
   }>;
 }
 
+export interface SearchBarProps {
+  onSearch: (term: string) => void;
+}
+
+export interface PokemonCardProps {
+  name: string;
+}
+
+

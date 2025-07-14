@@ -1,25 +1,30 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import type { SearchBarProps } from '../../types/pokemon';
+import { searchSchema, type SearchFormData} from '../../schemas/pokemonSchema'
+import useDebounce from '../hooks/useDebounce';
+import { useEffect } from 'react';
 
-const searchSchema = z.object({
-  search: z.string().min(1, 'Por favor ingresa un término de búsqueda'),
-});
 
-type SearchFormData = z.infer<typeof searchSchema>;
-
-interface SearchBarProps {
-  onSearch: (term: string) => void;
-}
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<SearchFormData>({
     resolver: zodResolver(searchSchema),
   });
+
+  const searchValue = watch('search', '');
+  const debouncedSearch  = useDebounce(searchValue, 500);
+  // Efecto para llamar a onSearch solo cuando el valor debounced cambia
+  useEffect(() => {
+    if (debouncedSearch.trim() !== '') {
+      onSearch(debouncedSearch);
+    }
+  }, [debouncedSearch, onSearch]);
 
   const onSubmit = (data: SearchFormData) => {
     onSearch(data.search);
